@@ -56,7 +56,7 @@
   border-bottom: 2px solid var(--white-color);
   padding-bottom: 3px;
 }
-.form-container {
+.student-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,9 +68,7 @@
   background-color: var(--main-dark-blue);
   margin-bottom: 35px;
 }
-.student-table-container {
-  color: var(--white-color);
-}
+
 .input-container {
   display: flex;
   flex-direction: column;
@@ -105,8 +103,9 @@ input {
   background-color: rgb(94, 233, 1);
   color: var(--black-color);
 }
-.student-table {
+.student-list-table {
   border-collapse: collapse;
+  color: var(--white-color);
 }
 .student-head {
   max-width: 220px;

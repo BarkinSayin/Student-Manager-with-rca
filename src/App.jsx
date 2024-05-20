@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Header from "./components/shared/Header.jsx";
+import StudentTableRow from "./components/app/student/student-table-row/StudentTableRow.jsx";
 
 function App() {
   const [studentList, setStudentList] = useState([
@@ -104,8 +105,8 @@ function App() {
         title={"Student Manager"}
         navElements={["Home", "About", "Contact"]}
       />
-      <div className="main-content">
-        <form className="form-container">
+      <main className="main-content">
+        <form className="student-form">
           <div className="input-container">
             <input
               type="text"
@@ -173,60 +174,25 @@ function App() {
             Submit
           </button>
         </form>
-        <div className="student-table-container">
-          <table className="student-table">
-            <thead>
-              <tr className="table-head">
-                <th className="student-head">Student Name</th>
-                <th className="student-head">Course</th>
-                <th className="student-head">Instructor</th>
-              </tr>
-            </thead>
-            <tbody>
-              {studentList.map((student) => (
-                <tr key={student.id} className="student-row">
-                  <td className="student-info">{student.student}</td>
-                  <td className="student-info">{student.course}</td>
-                  <td className="student-info">{student.instructor}</td>
-                  <td>
-                    <button
-                      className="delete-button"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        deleteStudent(student.id);
-                      }}
-                    >
-                      <FontAwesomeIcon
-                        icon={faTrashCan}
-                        className="trash-icon"
-                      />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {/* <h2>Student List</h2>
-          {studentList.map((student) => (
-            <div key={student.id} className="student-card">
-              <ul>
-                <li>{student.student}</li>
-                <li>{student.course}</li>
-                <li>{student.instructor}</li>
-              </ul>
-              <button
-                className="delete-button"
-                onClick={(event) => {
-                  event.preventDefault();
-                  deleteStudent(student.id);
-                }}
-              >
-                <FontAwesomeIcon icon={faTrash} className="trash-icon" />
-              </button>
-            </div>
-          ))} */}
-        </div>
-      </div>
+        <table className="student-list-table">
+          <thead>
+            <tr className="table-head">
+              <th className="student-head">Student Name</th>
+              <th className="student-head">Course</th>
+              <th className="student-head">Instructor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {studentList.map((student) => (
+              <StudentTableRow
+                student={student}
+                key={student.id}
+                deleteStudent={deleteStudent}
+              />
+            ))}
+          </tbody>
+        </table>
+      </main>
     </div>
   );
 }

@@ -11,7 +11,7 @@ function Header({ title, navElements }) {
       <nav>
         <ul className="navbar-elements">
           {navElements.map((element) => (
-            <li>
+            <li key={element}>
               <a href="*">{element}</a>
             </li>
           ))}
