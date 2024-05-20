@@ -1,38 +1,140 @@
+* {
+  padding: 0;
+  text-decoration: none;
+  font-family: cursive;
+}
+:root {
+  --main-dark-blue: rgb(37, 74, 129);
+  --header-dark-blue: rgba(12, 4, 131, 0.9);
+  --main-background-light-blue: rgb(160, 179, 219);
+  --input-background-light-blue: rgb(204, 217, 252);
+  --white-color: rgb(255, 255, 255);
+  --black-color: rgb(0, 0, 0);
+  --icons-color: rgb(228, 0, 0);
+}
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: var(--main-background-light-blue);
   min-height: 100vh;
+  height: 100%;
+}
+.main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 50px;
 }
-
-.App-link {
-  color: #61dafb;
+.student-manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--header-dark-blue);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header-left {
+  margin-left: 50px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--white-color);
+}
+.school-icon {
+  color: var(--icons-color);
+  font-size: 30px;
+}
+.header-right {
+  margin-right: 55px;
+  font-size: 20px;
+  display: flex;
+  gap: 40px;
+}
+.header-right a {
+  color: var(--white-color);
+}
+.header-right a:hover {
+  border-bottom: 2px solid var(--white-color);
+  padding-bottom: 3px;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid var(--black-color);
+  border-radius: 5px;
+  padding: 35px;
+  margin: 0;
+  gap: 10px;
+  background-color: var(--main-dark-blue);
+  margin-bottom: 35px;
+}
+.student-table-container {
+  color: var(--white-color);
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+}
+input {
+  height: 27px;
+  width: 240px;
+  background-color: var(--input-background-light-blue);
+  padding-left: 10px;
+  border-radius: 20px;
+}
+.error-text {
+  color: var(--icons-color);
+  font-size: 13px;
+  margin: 0;
+}
+.submit-button {
+  height: 25px;
+  width: 100px;
+  background-color: rgba(11, 138, 0, 0.952);
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  color: var(--white-color);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+.submit-button:hover {
+  background-color: rgb(94, 233, 1);
+  color: var(--black-color);
+}
+.student-table {
+  border-collapse: collapse;
+}
+.student-head {
+  max-width: 220px;
+  background-color: var(--main-dark-blue);
+}
+.table-head th {
+  border: 2px solid var(--black-color);
+  width: 220px;
+}
+.student-row {
+  position: relative;
+}
+.student-info {
+  border: 2px solid var(--black-color);
+  padding: 5px;
+  max-width: 220px;
+  height: auto;
+  overflow: hidden;
+  word-wrap: break-word;
+  background-color: var(--main-dark-blue);
+}
+.trash-icon {
+  font-size: 22px;
+  color: var(--icons-color);
+}
+.delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: -24px;
 }
