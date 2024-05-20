@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Header from "./components/shared/Header.jsx";
 import StudentTableRow from "./components/app/student/student-table-row/StudentTableRow.jsx";
+import StudentListTable from "./components/app/student/student-list-table/StudentListTable.jsx";
 
 function App() {
   const [studentList, setStudentList] = useState([
@@ -174,24 +175,10 @@ function App() {
             Submit
           </button>
         </form>
-        <table className="student-list-table">
-          <thead>
-            <tr className="table-head">
-              <th className="student-head">Student Name</th>
-              <th className="student-head">Course</th>
-              <th className="student-head">Instructor</th>
-            </tr>
-          </thead>
-          <tbody>
-            {studentList.map((student) => (
-              <StudentTableRow
-                student={student}
-                key={student.id}
-                deleteStudent={deleteStudent}
-              />
-            ))}
-          </tbody>
-        </table>
+        <StudentListTable
+          studentList={studentList}
+          deleteStudent={deleteStudent}
+        />
       </main>
     </div>
   );
