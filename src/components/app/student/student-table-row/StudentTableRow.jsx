@@ -5,7 +5,7 @@ import React from "react";
 const StudentTableRow = ({ student, deleteStudent }) => {
   return (
     <tr key={student.id} className="student-row">
-      <td className="student-info">{student.student}</td>
+      <td className="student-info">{student.studentName}</td>
       <td className="student-info">{student.course}</td>
       <td className="student-info">{student.instructor}</td>
       <td>
