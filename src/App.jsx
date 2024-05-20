@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/shared/Header.jsx";
 import StudentListTable from "./components/app/student/student-list-table/StudentListTable.jsx";
 import StudentForm from "./components/app/student/student-form/StudentForm.jsx";
+import { StudentProvider } from "./context/student/StundetContext.jsx";
 
 function App() {
   //Sadece baş harfleri büyük yazdırma fonksiyonu
@@ -17,10 +18,12 @@ function App() {
         title={"Student Manager"}
         navElements={["Home", "About", "Contact"]}
       />
-      <main className="main-content">
-        <StudentForm />
-        <StudentListTable />
-      </main>
+      <StudentProvider>
+        <main className="main-content">
+          <StudentForm />
+          <StudentListTable />
+        </main>
+      </StudentProvider>
     </div>
   );
 }
