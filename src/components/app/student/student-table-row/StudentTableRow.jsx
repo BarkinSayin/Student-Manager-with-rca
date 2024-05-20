@@ -1,8 +1,10 @@
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useContext } from "react";
+import { StudentContext } from "../../../../context/student/StundetContext";
 
-const StudentTableRow = ({ student, deleteStudent }) => {
+const StudentTableRow = ({ student }) => {
+  const { deleteStudent } = useContext(StudentContext);
   return (
     <tr key={student.id} className="student-row">
       <td className="student-info">{student.studentName}</td>

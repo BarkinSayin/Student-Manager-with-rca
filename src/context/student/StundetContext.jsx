@@ -1,11 +1,14 @@
-import React, { createContext } from "react";
+import { createContext, useEffect } from "react";
 import useStudent from "../../hooks/student/useStudent";
 
 export const StudentContext = createContext();
 
 export const StudentProvider = ({ children }) => {
-  const { studentList, getStudent, addStudent, deleteStudent } = useStudent();
-  const contextValue = { studentList, getStudent, addStudent, deleteStudent };
+  const { studentList, getStudents, addStudent, deleteStudent } = useStudent();
+  useEffect(() => {
+    getStudents();
+  }, []);
+  const contextValue = { studentList, getStudents, addStudent, deleteStudent };
   return (
     <StudentContext.Provider value={contextValue}>
       {children}

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import StudentTableRow from "../student-table-row/StudentTableRow";
+import { StudentContext } from "../../../../context/student/StundetContext";
 
-const StudentListTable = ({ studentList, deleteStudent }) => {
+const StudentListTable = () => {
+  const { studentList } = useContext(StudentContext);
   return (
     <table className="student-list-table">
       <thead>
@@ -13,11 +15,7 @@ const StudentListTable = ({ studentList, deleteStudent }) => {
       </thead>
       <tbody>
         {studentList.map((student) => (
-          <StudentTableRow
-            student={student}
-            key={student.id}
-            deleteStudent={deleteStudent}
-          />
+          <StudentTableRow student={student} key={student.id} />
         ))}
       </tbody>
     </table>

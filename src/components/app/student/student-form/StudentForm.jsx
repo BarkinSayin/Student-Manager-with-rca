@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { StudentContext } from "../../../../context/student/StundetContext";
 
-const StudentForm = ({ addStudent }) => {
+const StudentForm = () => {
   const [studentInput, setStudentInput] = useState({
     studentName: "",
     course: "",
     instructor: "",
   });
+
   const [error, setError] = useState({
     nameError: false,
     courseError: false,
     instructorError: false,
   });
+
+  const { addStudent } = useContext(StudentContext);
+
   const createStudent = (event) => {
     event.preventDefault();
     //Errorları sıfırlama
@@ -19,7 +24,6 @@ const StudentForm = ({ addStudent }) => {
       courseError: false,
       instructorError: false,
     });
-
     if (
       studentInput.studentName.trim() &&
       studentInput.course.trim() &&
@@ -69,7 +73,6 @@ const StudentForm = ({ addStudent }) => {
           <p className="error-text">Please enter a valid Student name</p>
         )}
       </div>
-      <br />
       <div className="input-container">
         <input
           type="text"
@@ -90,7 +93,6 @@ const StudentForm = ({ addStudent }) => {
           <p className="error-text">Please enter a valid Course</p>
         )}
       </div>
-      <br />
       <div className="input-container">
         <input
           type="text"
@@ -111,7 +113,6 @@ const StudentForm = ({ addStudent }) => {
           <p className="error-text">Please enter a valid Instructor</p>
         )}
       </div>
-      <br />
       <button className="submit-button" onClick={createStudent}>
         Submit
       </button>
