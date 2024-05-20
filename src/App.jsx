@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import Header from "./Header.js";
+import Header from "./components/shared/Header.jsx";
 
 function App() {
   const [studentList, setStudentList] = useState([
@@ -100,7 +100,10 @@ function App() {
       {
         //Header bileşenini App bileşenine eklemek
       }
-      <Header />
+      <Header
+        title={"Student Manager"}
+        navElements={["Home", "About", "Contact"]}
+      />
       <div className="main-content">
         <form className="form-container">
           <div className="input-container">

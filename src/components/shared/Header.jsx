@@ -1,24 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 
-function Header() {
+function Header({ title, navElements }) {
   return (
     <header className="student-manager-header">
-      <div className="header-left">
+      <div className="logo">
         <FontAwesomeIcon icon={faGraduationCap} className="school-icon" />
-        <p>Student Manager</p>
+        {title}
       </div>
-      <div className="header-right">
-        <div>
-          <a href="*">Home</a>
-        </div>
-        <div>
-          <a href="*">About</a>
-        </div>
-        <div>
-          <a href="*">Contact</a>
-        </div>
-      </div>
+      <nav>
+        <ul className="navbar-elements">
+          {navElements.map((element) => (
+            <li>
+              <a href="*">{element}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }

@@ -2,6 +2,7 @@
   padding: 0;
   text-decoration: none;
   font-family: cursive;
+  list-style: none;
 }
 :root {
   --main-dark-blue: rgb(37, 74, 129);
@@ -27,9 +28,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 6vh;
   background-color: var(--header-dark-blue);
 }
-.header-left {
+.logo {
   margin-left: 50px;
   font-size: 20px;
   display: flex;
@@ -41,16 +43,16 @@
   color: var(--icons-color);
   font-size: 30px;
 }
-.header-right {
+.navbar-elements {
   margin-right: 55px;
   font-size: 20px;
   display: flex;
   gap: 40px;
 }
-.header-right a {
+.navbar-elements a {
   color: var(--white-color);
 }
-.header-right a:hover {
+.navbar-elements a:hover {
   border-bottom: 2px solid var(--white-color);
   padding-bottom: 3px;
 }
