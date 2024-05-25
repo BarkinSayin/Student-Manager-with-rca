@@ -20,6 +20,7 @@ const StudentForm = () => {
     event.preventDefault();
     //Errorları sıfırlama
     setError({
+      
       nameError: false,
       courseError: false,
       instructorError: false,
