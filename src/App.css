@@ -22,7 +22,9 @@
 .main-content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 88vh;
 }
 .student-manager-header {
   display: flex;
@@ -63,6 +65,7 @@
 .student-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   border: 2px solid var(--black-color);
   border-radius: 5px;
@@ -70,7 +73,6 @@
   margin: 0;
   gap: 10px;
   background-color: var(--main-dark-blue);
-  margin-bottom: 35px;
 }
 
 .input-container {
@@ -149,5 +151,4 @@ input {
   justify-content: center;
   align-items: center;
   gap: 1.5vh;
-  min-height: 94vh;
 }

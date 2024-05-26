@@ -14,15 +14,39 @@
     },
     {
       "studentName": "Flex Berkay Turna",
-      "course": "Html Css",
+      "course": "Html, Css",
       "instructor": "Orkun Durmaz",
       "id": "003"
     },
     {
-      "studentName": "Ceren Dinçer",
-      "course": "React",
-      "instructor": "Orkun Durmaz",
+      "studentName": "Mert Ders Kıran(t)",
+      "course": "JavaScript",
+      "instructor": "Hicran Ertuğral",
       "id": "004"
+    },
+    {
+      "studentName": "Ali Rıza Hıçkıran",
+      "course": "Node.js",
+      "instructor": "Orkun Durmaz",
+      "id": "005"
+    },
+    {
+      "studentName": "Cenk Grid Kaynak",
+      "course": "Html, Css",
+      "instructor": "Buse Uğraş",
+      "id": "006"
+    },
+    {
+      "studentName": "Ceren Dinçer",
+      "course": "Typescript",
+      "instructor": "Orkun Durmaz",
+      "id": "007"
+    },
+    {
+      "studentName": "Hakan Berke Temur",
+      "course": "Bootstrap",
+      "instructor": "Buse Uğraş",
+      "id": "008"
     }
   ]
 }
