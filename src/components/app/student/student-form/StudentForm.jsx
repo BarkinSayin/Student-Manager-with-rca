@@ -14,13 +14,12 @@ const StudentForm = () => {
     instructorError: false,
   });
 
-  const { addStudent } = useContext(StudentContext);
+  const { addStudent, isLoading } = useContext(StudentContext);
 
   const createStudent = (event) => {
     event.preventDefault();
     //Errorları sıfırlama
     setError({
-      
       nameError: false,
       courseError: false,
       instructorError: false,
@@ -114,9 +113,15 @@ const StudentForm = () => {
           <p className="error-text">Please enter a valid Instructor</p>
         )}
       </div>
-      <button className="submit-button" onClick={createStudent}>
-        Submit
-      </button>
+      {isLoading ? (
+        <button className="submit-button" disabled>
+          Submit
+        </button>
+      ) : (
+        <button className="submit-button" onClick={createStudent}>
+          Submit
+        </button>
+      )}
     </form>
   );
 };

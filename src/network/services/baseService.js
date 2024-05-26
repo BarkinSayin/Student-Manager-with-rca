@@ -29,10 +29,10 @@ export const baseService = {
   },
   delete: async (endpoint, configs = {}) => {
     try {
-      const response = await axiosInstance.post(endpoint, configs);
+      const response = await axiosInstance.delete(endpoint, configs);
       return response;
     } catch (error) {
-      console.error(`POST ${endpoint} error: ${error}`);
+      console.error(`DELETE ${endpoint} error: ${error}`);
       throw error;
     }
   },

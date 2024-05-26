@@ -1,47 +1,56 @@
 import { useState } from "react";
 import axios from "axios";
+import {
+  postStudent,
+  deleteStudent as deleteStudentAPI,
+  getStudents as getStudentsAPI,
+} from "../../network/requests/studentRequests";
+
 const useStudent = () => {
   const [studentList, setStudentList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Delete buttonu için fonksiyon
   //Tıklanan delete buttonu ilgili student card'ın id'sini son güncel student listde ki her elemanın id'si ile karşılaştırıp eşit olduğu takdirde arrayden silmesine yarıyor.
   const deleteStudent = async (studentId) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:5050/students/${studentId}`
-      );
-
-      setStudentList((prevStudentList) =>
-        prevStudentList.filter((student) => student.id !== studentId)
-      );
-      console.log(response);
+      setIsLoading(true);
+      await deleteStudentAPI(studentId);
+      setStudentList((prevStudentList) => {
+        return prevStudentList.filter((student) => student.id !== studentId);
+      });
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const addStudent = async (student) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5050/students",
-        student
-      );
-      setStudentList((prevStudentList) => [...prevStudentList, response.data]);
+      setIsLoading(true);
+      const newStudent = await postStudent(student);
+      setStudentList((prevStudentList) => [...prevStudentList, newStudent]);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const getStudents = async () => {
     try {
-      const response = await axios("http://localhost:5050/students");
-      setStudentList(response.data);
+      setIsLoading(true);
+      const students = await getStudentsAPI();
+      setStudentList(students);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  return { studentList, deleteStudent, addStudent, getStudents };
+  return { studentList, isLoading, deleteStudent, addStudent, getStudents };
 };
 
 export default useStudent;
