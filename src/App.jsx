@@ -1,8 +1,10 @@
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/shared/Header.jsx";
-import StudentListTable from "./components/app/student/student-list-table/StudentListTable.jsx";
-import StudentForm from "./components/app/student/student-form/StudentForm.jsx";
 import { StudentProvider } from "./context/student/StundetContext.jsx";
+import LandingPage from "./pages/shared/landing-page/LandingPage.jsx";
+import StudentListPage from "./pages/app/student/student-list-page/StudentListPage.jsx";
+import NewStudentPage from "./pages/app/student/new-student-page/NewStudentPage.jsx";
 
 function App() {
   //Sadece baş harfleri büyük yazdırma fonksiyonu
@@ -13,18 +15,20 @@ function App() {
   // }
 
   return (
-    <div className="App">
-      <Header
-        title={"Student Manager"}
-        navElements={["Home", "About", "Contact"]}
-      />
-      <StudentProvider>
-        <main className="main-content">
-          <StudentForm />
-          <StudentListTable />
-        </main>
-      </StudentProvider>
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <StudentProvider>
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/students" element={<StudentListPage />} />
+              <Route path="/students/new" element={<NewStudentPage />} />
+            </Routes>
+          </main>
+        </StudentProvider>
+      </div>
+    </Router>
   );
 }
 

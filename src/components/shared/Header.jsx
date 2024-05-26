@@ -1,20 +1,27 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function Header({ title, navElements }) {
   return (
     <header className="student-manager-header">
       <div className="logo">
-        <FontAwesomeIcon icon={faGraduationCap} className="school-icon" />
-        {title}
+        <Link to="/">
+          <FontAwesomeIcon icon={faGraduationCap} className="school-icon" />
+          Student Manager
+        </Link>
       </div>
       <nav>
         <ul className="navbar-elements">
-          {navElements.map((element) => (
-            <li key={element}>
-              <a href="*">{element}</a>
-            </li>
-          ))}
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/students">StudentList</Link>
+          </li>
+          <li>
+            <Link to="/students/new">New Student</Link>
+          </li>
         </ul>
       </nav>
     </header>

@@ -36,17 +36,17 @@ const StudentForm = () => {
       !studentInput.studentName.trim() &&
         setError((prevStudentInputErr) => ({
           ...prevStudentInputErr,
-          studentName: true,
+          nameError: true,
         }));
       !studentInput.course.trim() &&
         setError((prevStudentInputErr) => ({
           ...prevStudentInputErr,
-          course: true,
+          courseError: true,
         }));
       !studentInput.instructor.trim() &&
         setError((prevStudentInputErr) => ({
           ...prevStudentInputErr,
-          instructor: true,
+          instructorError: true,
         }));
     }
   };
