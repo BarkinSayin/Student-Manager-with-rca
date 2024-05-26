@@ -5,7 +5,7 @@ import { StudentContext } from "../../../../context/student/StundetContext";
 const StudentListTable = () => {
   const { studentList, isLoading } = useContext(StudentContext);
   return (
-    <div>
+    <>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -24,7 +24,7 @@ const StudentListTable = () => {
           </tbody>
         </table>
       )}
-    </div>
+    </>
   );
 };
 

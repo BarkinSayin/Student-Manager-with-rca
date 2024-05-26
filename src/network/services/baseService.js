@@ -10,7 +10,6 @@ export const baseService = {
   get: async (endpoint, configs = {}) => {
     try {
       const response = await axiosInstance.get(endpoint, configs);
-      console.log(response);
       return response;
     } catch (error) {
       console.error(`GET ${endpoint} error:${error}`);

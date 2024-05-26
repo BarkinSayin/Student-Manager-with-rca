@@ -1,4 +1,5 @@
 * {
+  margin: 0;
   padding: 0;
   text-decoration: none;
   font-family: cursive;
@@ -22,7 +23,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
 }
 .student-manager-header {
   display: flex;
@@ -55,6 +55,10 @@
 .navbar-elements a:hover {
   border-bottom: 2px solid var(--white-color);
   padding-bottom: 3px;
+}
+.home-page-title {
+  font-size: 35px;
+  color: var(--icons-color);
 }
 .student-form {
   display: flex;
@@ -138,4 +142,12 @@ input {
   position: absolute;
   top: 8px;
   right: -24px;
+}
+.not-found-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5vh;
+  min-height: 94vh;
 }

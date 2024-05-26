@@ -17,10 +17,10 @@ function Header({ title, navElements }) {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/students">StudentList</Link>
+            <Link to="/students/new">New Student</Link>
           </li>
           <li>
-            <Link to="/students/new">New Student</Link>
+            <Link to="/students">StudentList</Link>
           </li>
         </ul>
       </nav>
