@@ -11,7 +11,11 @@ import { createRef, useReducer } from "react";
 const initialState={
   counter:0,
   lastUpdatedAt:new Date().toLocaleString(),
-  error:null,
+  errors:{
+    incrementError:false,
+    decrementError:false,
+    setCounterError:false
+  },
   isLoading:false
 }
 
@@ -29,6 +33,8 @@ switch (action.type) {
     return{...state, counter:action.payload.amount,lastUpdatedAt:new Date().toLocaleString()}
   case "RESET":
     return{...state, counter:0,lastUpdatedAt:new Date().toLocaleString()}
+  case "ERROR":
+    return{...state,errors:action.payload.errors}
   default:
     return state
 }
@@ -53,14 +59,44 @@ function App() {
   <button onClick={()=>dispatch({type:"DECREMENT_BY_ONE"})}>Decrease</button>
   <button onClick={()=>dispatch({type:"RESET"})}>Reset</button>
   <br />
+  <button onClick={()=>
+    {
+      if (Number(incbyRef.current.value)) {
+      dispatch({type:"INCREMENT",payload:{amount:Number(incbyRef.current.value)}})
+    }else{
+      dispatch({type:"ERROR",payload:{errors:{...state.errors,incrementError:true}}})
+    }
+
+  }
+    }>Inc by</button>
   <input type="text" ref={incbyRef}/>
-  <button onClick={()=>dispatch({type:"INCREMENT",payload:{amount:Number(incbyRef.current.value)}})}>Inc by</button>
+  {state.errors.incrementError && <p>Invalid Number</p>}
   <br />
+  <button onClick={()=>
+    {
+      if (Number(decbyRef.current.value)) {
+      dispatch({type:"DECREMENT",payload:{amount:Number(decbyRef.current.value)}})
+    }else{
+      dispatch({type:"ERROR",payload:{errors:{...state.errors,decrementError:true}}})
+    }
+
+  }
+    }>Dec by</button>
   <input type="text" ref={decbyRef}/>
-  <button onClick={()=>dispatch({type:"DECREMENT",payload:{amount:Number(decbyRef.current.value)}})}>Dec by</button>
+  {state.errors.decrementError && <p>Invalid Number</p>}
   <br />
+  <button onClick={()=>
+    {
+      if (Number(setCounterRef.current.value)) {
+      dispatch({type:"SET_COUNTER",payload:{amount:Number(setCounterRef.current.value)}})
+    }else{
+      dispatch({type:"ERROR",payload:{errors:{...state.errors,setCounterError:true}}})
+    }
+
+  }
+    }>Set Counter</button>
   <input type="text" ref={setCounterRef}/>
-  <button onClick={()=>dispatch({type:"SET_COUNTER",payload:{amount:Number(setCounterRef.current.value)}})}>Set Counter</button>
+  {state.errors.setCounterError && <p>Invalid Number</p>}
   </>
 }
 
