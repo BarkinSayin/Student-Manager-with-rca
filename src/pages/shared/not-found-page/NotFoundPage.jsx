@@ -12,14 +12,16 @@ const NotFoundPage = () => {
     if (count === 0) {
       navigate("/");
     }
-    //Her 1000 milisaniye de bu fonksiyonu çalıştırmaya yarıyor
+    //1000 milisaniye sonra fonksiyonu çalıştırmaya yarıyor
     const timer = setTimeout(() => {
       setCount(count - 1);
     }, 1000);
+    console.log("NotFoundPage mounted")
     //Component unmount edildiğinde mevcut zamanlayıcı iptal edilir
-    return () => clearTimeout(timer);
-    //useEffect hookumuz sadece count ve navigate değerlerimiz değiştiğinde çalşıcaktır
-  }, [count, navigate]);
+    return () => {clearTimeout(timer)
+    console.log("NotFoundPage unmounted");};
+    //useEffect hookumuz sadece count ve navigate değerlerimiz değiştiğinde çalışıcaktır
+  }, [count]);
 
   return (
     <div className="not-found-page-container">

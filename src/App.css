@@ -4,6 +4,7 @@
   text-decoration: none;
   font-family: cursive;
   list-style: none;
+  text-align: center;
 }
 :root {
   --main-dark-blue: rgb(37, 74, 129);
@@ -69,9 +70,9 @@
   align-items: center;
   border: 2px solid var(--black-color);
   border-radius: 5px;
-  padding: 35px;
+  padding: 45px;
   margin: 0;
-  gap: 10px;
+  gap: 15px;
   background-color: var(--main-dark-blue);
 }
 
