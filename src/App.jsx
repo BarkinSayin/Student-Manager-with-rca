@@ -26,11 +26,11 @@ switch (action.type) {
   case "DECREMENT_BY_ONE":
     return{...state, counter:state.counter-1,lastUpdatedAt:new Date().toLocaleString()}
   case "INCREMENT":
-    return{...state, counter:state.counter+action.payload.amount,lastUpdatedAt:new Date().toLocaleString()}
+    return{...state, counter:state.counter+action.payload.amount,lastUpdatedAt:new Date().toLocaleString(),errors:{incrementError:false}}
   case "DECREMENT":
-    return{...state, counter:state.counter-action.payload.amount,lastUpdatedAt:new Date().toLocaleString()}
+    return{...state, counter:state.counter-action.payload.amount,lastUpdatedAt:new Date().toLocaleString(),errors:{decrementError:false}}
   case "SET_COUNTER":
-    return{...state, counter:action.payload.amount,lastUpdatedAt:new Date().toLocaleString()}
+    return{...state, counter:action.payload.amount,lastUpdatedAt:new Date().toLocaleString(),errors:{setCounterError:false}}
   case "RESET":
     return{...state, counter:0,lastUpdatedAt:new Date().toLocaleString()}
   case "ERROR":
