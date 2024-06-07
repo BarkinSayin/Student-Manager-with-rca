@@ -1,6 +1,19 @@
 import { useContext, useState } from "react";
 import { StudentContext } from "../../../../context/student/StundetContext";
 
+const initialState = {
+  studentInput: {
+    studentName: "",
+    course: "",
+    instructor: "",
+  },
+  error:{
+    nameError:false,
+    courseError:false,
+    instructorError:false
+  }
+};
+
 const StudentForm = () => {
   const [studentInput, setStudentInput] = useState({
     studentName: "",

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-function Header({ title, navElements }) {
+function Header() {
   return (
     <header className="student-manager-header">
       <div className="logo">
