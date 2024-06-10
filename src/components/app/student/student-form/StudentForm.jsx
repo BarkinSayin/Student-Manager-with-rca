@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useReducer, useState } from "react";
 import { StudentContext } from "../../../../context/student/StundetContext";
 
 const initialState = {
@@ -7,10 +7,41 @@ const initialState = {
     course: "",
     instructor: "",
   },
-  error:{
-    nameError:false,
-    courseError:false,
-    instructorError:false
+  error: {
+    nameError: false,
+    courseError: false,
+    instructorError: false,
+  },
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "STUDENT_INPUT":
+      return {
+        studentInput: action.payload.inputs,
+        error: { nameError: false, courseError: false, instructorError: false },
+      };
+    case "ERROR":
+      return {
+        studentInput: { ...state.studentInput },
+        error: action.payload.errors,
+      };
+    case "RESET":
+      return {
+        studentInput: {
+          studentName: "",
+          course: "",
+          instructor: "",
+        },
+        error: {
+          nameError: false,
+          courseError: false,
+          instructorError: false,
+        },
+      };
+
+    default:
+      return state;
   }
 };
 
@@ -26,6 +57,8 @@ const StudentForm = () => {
     courseError: false,
     instructorError: false,
   });
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const { addStudent, isLoading } = useContext(StudentContext);
 
