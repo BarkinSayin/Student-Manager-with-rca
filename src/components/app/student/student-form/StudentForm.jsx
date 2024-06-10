@@ -7,7 +7,7 @@ const initialState = {
     course: "",
     instructor: "",
   },
-  error: {
+  errors: {
     nameError: false,
     courseError: false,
     instructorError: false,
@@ -16,15 +16,19 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "STUDENT_INPUT":
+    case "SET_STUDENT_INPUT":
       return {
         studentInput: action.payload.inputs,
-        error: { nameError: false, courseError: false, instructorError: false },
+        errors: {
+          nameError: false,
+          courseError: false,
+          instructorError: false,
+        },
       };
     case "ERROR":
       return {
         studentInput: { ...state.studentInput },
-        error: action.payload.errors,
+        errors: action.payload.errors,
       };
     case "RESET":
       return {
@@ -33,7 +37,7 @@ const reducer = (state, action) => {
           course: "",
           instructor: "",
         },
-        error: {
+        errors: {
           nameError: false,
           courseError: false,
           instructorError: false,
@@ -46,18 +50,6 @@ const reducer = (state, action) => {
 };
 
 const StudentForm = () => {
-  const [studentInput, setStudentInput] = useState({
-    studentName: "",
-    course: "",
-    instructor: "",
-  });
-
-  const [error, setError] = useState({
-    nameError: false,
-    courseError: false,
-    instructorError: false,
-  });
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const nameRef = createRef();
@@ -68,40 +60,77 @@ const StudentForm = () => {
 
   const createStudent = (event) => {
     event.preventDefault();
-    //Errorları sıfırlama
-    setError({
-      nameError: false,
-      courseError: false,
-      instructorError: false,
-    });
+
     if (
-      studentInput.studentName.trim() &&
-      studentInput.course.trim() &&
-      studentInput.instructor.trim()
+      state.studentInput.studentName.trim() &&
+      state.studentInput.course.trim() &&
+      state.studentInput.instructor.trim()
     ) {
-      addStudent(studentInput);
+      addStudent(state.studentInput);
       //Input içeriğini temizleme
-      setStudentInput({ studentName: "", course: "", instructor: "" });
+      handleReset();
     } else {
-      !studentInput.studentName.trim() &&
-        setError((prevStudentInputErr) => ({
-          ...prevStudentInputErr,
-          nameError: true,
-        }));
-      !studentInput.course.trim() &&
-        setError((prevStudentInputErr) => ({
-          ...prevStudentInputErr,
-          courseError: true,
-        }));
-      !studentInput.instructor.trim() &&
-        setError((prevStudentInputErr) => ({
-          ...prevStudentInputErr,
-          instructorError: true,
-        }));
+      !state.studentInput.studentName.trim() &&
+        dispatch({
+          type: "ERROR",
+          payload: { errors: { ...state.errors, nameError: true } },
+        });
+      !state.studentInput.course.trim() &&
+        dispatch({
+          type: "ERROR",
+          payload: { errors: { ...state.errors, courseError: true } },
+        });
+      !state.studentInput.instructor.trim() &&
+        dispatch({
+          type: "ERROR",
+          payload: { errors: { ...state.errors, instructorError: true } },
+        });
     }
   };
 
-  const handleInputName = () => {};
+  const handleInputName = () => {
+    dispatch({
+      type: "SET_STUDENT_INPUT",
+      payload: {
+        inputs: {
+          ...state.studentInput,
+          studentName: nameRef.current.value,
+        },
+      },
+    });
+  };
+
+  const handleInputCourse = () => {
+    dispatch({
+      type: "SET_STUDENT_INPUT",
+      payload: {
+        inputs: {
+          ...state.studentInput,
+          course: courseRef.current.value,
+        },
+      },
+    });
+  };
+
+  const handleInputInstructor = () => {
+    dispatch({
+      type: "SET_STUDENT_INPUT",
+      payload: {
+        inputs: {
+          ...state.studentInput,
+          instructor: instructorRef.current.value,
+        },
+      },
+    });
+  };
+
+  const handleReset = () => {
+    dispatch({ type: "RESET" });
+
+    nameRef.current.value = null;
+    courseRef.current.value = null;
+    instructorRef.current.value = null;
+  };
 
   return (
     <form className="student-form">
@@ -109,15 +138,13 @@ const StudentForm = () => {
         <input
           type="text"
           placeholder="Student Name"
-          //İki yönlü bağlama (Two Way Binding)
-          value={studentInput.studentName}
           onChange={handleInputName}
           ref={nameRef}
         />
         {
           //Conditional Rendering
         }
-        {error.nameError && (
+        {state.errors.nameError && (
           <p className="error-text">Please enter a valid Student name</p>
         )}
       </div>
@@ -125,20 +152,13 @@ const StudentForm = () => {
         <input
           type="text"
           placeholder="Course"
-          //İki yönlü bağlama (Two Way Binding)
-          value={studentInput.course}
-          onChange={(event) => {
-            setStudentInput((prevStudentInput) => ({
-              ...prevStudentInput,
-              course: event.target.value,
-            }));
-          }}
+          onChange={handleInputCourse}
           ref={courseRef}
         />
         {
           //Conditional Rendering
         }
-        {error.courseError && (
+        {state.errors.courseError && (
           <p className="error-text">Please enter a valid Course</p>
         )}
       </div>
@@ -146,20 +166,13 @@ const StudentForm = () => {
         <input
           type="text"
           placeholder="Instructor"
-          //İki yönlü bağlama (Two Way Binding)
-          value={studentInput.instructor}
-          onChange={(event) => {
-            setStudentInput((prevStudentInput) => ({
-              ...prevStudentInput,
-              instructor: event.target.value,
-            }));
-          }}
+          onChange={handleInputInstructor}
           ref={instructorRef}
         />
         {
           //Conditional Rendering
         }
-        {error.instructorError && (
+        {state.errors.instructorError && (
           <p className="error-text">Please enter a valid Instructor</p>
         )}
       </div>
