@@ -1,4 +1,4 @@
-import { useContext, useReducer, useState } from "react";
+import { createRef, useContext, useReducer, useState } from "react";
 import { StudentContext } from "../../../../context/student/StundetContext";
 
 const initialState = {
@@ -60,6 +60,10 @@ const StudentForm = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const nameRef = createRef();
+  const courseRef = createRef();
+  const instructorRef = createRef();
+
   const { addStudent, isLoading } = useContext(StudentContext);
 
   const createStudent = (event) => {
@@ -97,6 +101,8 @@ const StudentForm = () => {
     }
   };
 
+  const handleInputName = () => {};
+
   return (
     <form className="student-form">
       <div className="input-container">
@@ -105,12 +111,8 @@ const StudentForm = () => {
           placeholder="Student Name"
           //İki yönlü bağlama (Two Way Binding)
           value={studentInput.studentName}
-          onChange={(event) => {
-            setStudentInput((prevStudentInput) => ({
-              ...prevStudentInput,
-              studentName: event.target.value,
-            }));
-          }}
+          onChange={handleInputName}
+          ref={nameRef}
         />
         {
           //Conditional Rendering
@@ -131,6 +133,7 @@ const StudentForm = () => {
               course: event.target.value,
             }));
           }}
+          ref={courseRef}
         />
         {
           //Conditional Rendering
@@ -151,6 +154,7 @@ const StudentForm = () => {
               instructor: event.target.value,
             }));
           }}
+          ref={instructorRef}
         />
         {
           //Conditional Rendering
