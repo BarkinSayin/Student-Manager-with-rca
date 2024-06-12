@@ -18,17 +18,16 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "SET_STUDENT_INPUT":
       return {
-        studentInput: action.payload.inputs,
-        errors: {
-          nameError: false,
-          courseError: false,
-          instructorError: false,
-        },
+        ...state,
+        studentInput: { ...state.studentInput, ...action.payload.inputs },
       };
     case "ERROR":
       return {
-        studentInput: { ...state.studentInput },
-        errors: action.payload.errors,
+        ...state,
+        errors: {
+          ...state.errors,
+          ...action.payload,
+        },
       };
     case "RESET":
       return {
@@ -67,24 +66,9 @@ const StudentForm = () => {
       state.studentInput.instructor.trim()
     ) {
       addStudent(state.studentInput);
-      //Input içeriğini temizleme
       handleReset();
     } else {
-      !state.studentInput.studentName.trim() &&
-        dispatch({
-          type: "ERROR",
-          payload: { errors: { ...state.errors, nameError: true } },
-        });
-      !state.studentInput.course.trim() &&
-        dispatch({
-          type: "ERROR",
-          payload: { errors: { ...state.errors, courseError: true } },
-        });
-      !state.studentInput.instructor.trim() &&
-        dispatch({
-          type: "ERROR",
-          payload: { errors: { ...state.errors, instructorError: true } },
-        });
+      handleErrors();
     }
   };
 
@@ -93,7 +77,6 @@ const StudentForm = () => {
       type: "SET_STUDENT_INPUT",
       payload: {
         inputs: {
-          ...state.studentInput,
           studentName: nameRef.current.value,
         },
       },
@@ -105,7 +88,6 @@ const StudentForm = () => {
       type: "SET_STUDENT_INPUT",
       payload: {
         inputs: {
-          ...state.studentInput,
           course: courseRef.current.value,
         },
       },
@@ -117,11 +99,40 @@ const StudentForm = () => {
       type: "SET_STUDENT_INPUT",
       payload: {
         inputs: {
-          ...state.studentInput,
           instructor: instructorRef.current.value,
         },
       },
     });
+  };
+
+  const handleErrors = () => {
+    !state.studentInput.studentName.trim()
+      ? dispatch({
+          type: "ERROR",
+          payload: { nameError: true },
+        })
+      : dispatch({
+          type: "ERROR",
+          payload: { nameError: false },
+        });
+    !state.studentInput.course.trim()
+      ? dispatch({
+          type: "ERROR",
+          payload: { courseError: true },
+        })
+      : dispatch({
+          type: "ERROR",
+          payload: { courseError: false },
+        });
+    !state.studentInput.instructor.trim()
+      ? dispatch({
+          type: "ERROR",
+          payload: { instructorError: true },
+        })
+      : dispatch({
+          type: "ERROR",
+          payload: { instructorError: false },
+        });
   };
 
   const handleReset = () => {
