@@ -6,7 +6,6 @@ import NewStudentPage from "./pages/app/student/new-student-page/NewStudentPage.
 import StudentListPage from "./pages/app/student/student-list-page/StudentListPage.jsx";
 import LandingPage from "./pages/shared/landing-page/LandingPage.jsx";
 import NotFoundPage from "./pages/shared/not-found-page/NotFoundPage.jsx";
-import { useCallback, useState } from "react";
 
 function App() {
   //Sadece baş harfleri büyük yazdırma fonksiyonu
@@ -15,39 +14,9 @@ function App() {
   //     return letter.toUpperCase();
   //   });
   // }
-  const [num1,setNum1]=useState(0)
-  const [num2,setNum2]=useState(0)
-  const [sum,setSum]=useState(0)
 
-  const calculateSum=useCallback(()=>{
-    console.log("CalculateSum created");
-    console.log("num1:"+num1,"num2:"+num2,"sum:"+Number(num1+num2));
-  },[num1,num2])
-
-  const handleClick=()=>{
-    console.log("handleClick created");
-    setSum(calculateSum())
-  }
   return (
-    <>
-      <br />
-      <label >Num1:</label>
-      <input type="text" value={num1} onChange={(event)=>setNum1(Number(event.target.value))}/>
-      <br />
-      <label >Num1:</label>
-      <input type="text" value={num2} onChange={(event)=>setNum2(Number(event.target.value))}/>
-      <br /><br />
-      <button onClick={handleClick}>Calculate Sum</button>
-      <br />
-      <p>Sum:{sum}</p>
-    </>
-  );
-}
-
-export default App;
-
-{
-  /* <Router>
+    <Router>
       <div className="App">
         <Header />
         <StudentProvider>
@@ -61,5 +30,8 @@ export default App;
           </main>
         </StudentProvider>
       </div>
-    </Router> */
+    </Router>
+  );
 }
+
+export default App;
